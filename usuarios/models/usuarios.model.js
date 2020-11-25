@@ -35,7 +35,7 @@ Usuario.init({
 
 });
 
-// Usuario.sync({alter: true, force: true})
+Usuario.sync({alter: true, force: true})
 
 
 
