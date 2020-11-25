@@ -38,6 +38,6 @@ Libro.init({
 
 });
 
-Libro.sync({alter: true, force: true})
+// Libro.sync({alter: true, force: true})
 
 module.exports = Libro

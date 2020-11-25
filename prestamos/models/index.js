@@ -18,7 +18,7 @@ function sync() {
    Usuario.sync({alter: true, force: true})
 }//
 
-sync()
+// sync()
 
 module.exports = {
   Libro, Prestamo, Usuario
