@@ -3,27 +3,28 @@ const sqz = require('../db');
 
 
 
-class Libro extends Model {
+class Prestamo extends Model {
 }
 
-Libro.init({
+Prestamo.init({
   id: {
     type: DataTypes.UUID,
     primaryKey: true,
+    defaultValue: DataTypes.UUIDV1,
   },
-  prestado: {
+
+  entregado: {
     type: DataTypes.BOOLEAN,
-    // allowNull: false,
+    allowNull: false,
     defaultValue: false
   }
-
 
 
 }, {
 
   sequelize: sqz,
-  modelName: 'Libro',
-  tableName: 'libro',
+  modelName: 'Prestamo',
+  tableName: 'prestamo',
   timestamps: true,
   // paranoid: true,
 
@@ -31,4 +32,4 @@ Libro.init({
 
 
 
-module.exports = Libro
+module.exports = Prestamo
