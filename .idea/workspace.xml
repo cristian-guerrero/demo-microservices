@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4d564c8e-a3c7-4b93-b025-f4f6d280bee1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/event-bus/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/event-bus/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libros/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/libros/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/skaffold.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/skaffold.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios/db/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/db/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios/models/libros.model.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usuarios/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/yarn.lock" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1klKnB1Jphox246kb4i3VrxpLV8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.2.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4d564c8e-a3c7-4b93-b025-f4f6d280bee1" name="Default Changelist" comment="" />
+      <created>1606269902520</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606269902520</updated>
+      <workItem from="1606269903729" duration="1535000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

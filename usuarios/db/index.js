@@ -2,13 +2,12 @@ const { Sequelize } = require('sequelize')
 
 
 const dbConfig = {
-  HOST: "localhost",
-  USER: "",
-  PASSWORD: "S1st3m4s1.",
-  DB: "local_WihomTestingDB",
-  //DB: "local_WihomProductionDB",
+  HOST: "usuarios-db-clusterip-srv",
+  USER: "usuarios",
+  PASSWORD: "usuarios",
+  DB: "usuarios",
   dialect: "postgres",
-  port: 6432,
+  port: 5432,
   pool: {
       max: 5,
       min: 0,
@@ -18,7 +17,7 @@ const dbConfig = {
 }
 
 
-exports.sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   port: dbConfig.port || 5432,
@@ -30,3 +29,7 @@ exports.sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD,
       idle: dbConfig.pool.idle
   }
 });
+
+// console.log(sequelize)
+
+module.exports = sequelize
