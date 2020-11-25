@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: libros-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: libros-db
+  template:
+    metadata:
+      labels:
+        app: libros-db
+    spec:
+      containers:
+        - name: libros-db
+          image: postgres:11
+---
+apiVersion: v1 
+kind: Service
+metadata:
+  name: libros-db-clusterip-srv
+spec:
+  selector:
+    app: libros-db
+  ports:
+    - name: db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432

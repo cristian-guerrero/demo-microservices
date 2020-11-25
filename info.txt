@@ -1,0 +1,7 @@
+reto1) API para una biblioteca
+2) la biblioteca tiene libros un ejemplar de cada libro
+3) usuarios prestan libros
+4) llevar el registro de esos prestamos
+5) CRUD de usuarios y de libros
+6) cualquier base de datos a libre elección
+7) repositorio de GitHub y con un readme file que indique los pasos que debo hacer para ejecutar la API en mi computadora
