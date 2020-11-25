@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize')
 
 
+
 const dbConfig = {
   HOST: "usuarios-db-clusterip-srv",
   USER: "usuarios",
@@ -9,13 +10,12 @@ const dbConfig = {
   dialect: "postgres",
   port: 5432,
   pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
   }
 }
-
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,

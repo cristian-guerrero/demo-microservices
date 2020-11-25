@@ -1,16 +1,40 @@
-const { Router } = require('express')
+const {Router} = require('express')
 
+const axios = require('axios')
 
 const router = Router()
 
+const services = [
+  'libros-clusterip-srv:3001',
+  'usuarios-clusterip-srv:3000'
 
-router.get('/api/event', (req, res) => {
+]
+
+const model = {
+  type: 'tipoEvento',
+  data: {}
+}
+router.post('/api/event-bus/event', (req, res) => {
 
 
-  res.send({ message: 'Lista de evento' })
+  let {event} = req.body
+
+  if (!event) {
+
+    event = {
+      type: undefined,
+      data: undefined
+    }
+  }
+  console.log('new event type: '+ event.type)
+
+  for (const s of services) {
+    axios.post(`http://${s}/api/event`, {event})
+  }
+
+
+  res.send({status: 'ok'})
 })
-
-
 
 
 module.exports = router

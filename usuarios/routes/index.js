@@ -3,12 +3,20 @@ const {Router} = require('express')
 const Usuario = require('../models/usuarios.model')
 const router = Router()
 
+const axios = require('axios')
 
+const eventUrl = 'http://event-bus-clusterip-srv:3003/api/event-bus/event'
+
+/**
+ *
+ */
 router.get('/api/usuarios', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
 
-  const lista = await Usuario.findAll()
+  const lista = await Usuario.findAll({
+    attributes: ['id', 'nombre', 'cedula']
+  })
 
   res.send({
     message: 'Lista de usuarios',
@@ -16,7 +24,9 @@ router.get('/api/usuarios', async (req, res) => {
   })
 })
 
-
+/**
+ * crear usuario
+ */
 router.post('/api/usuarios', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
@@ -28,6 +38,9 @@ router.post('/api/usuarios', async (req, res) => {
     const user = await Usuario.create({
       nombre, cedula
     })
+
+
+    emitEvent('userCreated',user.get('id') )
 
     res.status(201).send({
       message: 'Usuario Creado',
@@ -48,6 +61,9 @@ router.post('/api/usuarios', async (req, res) => {
   }
 })
 
+/**
+ *
+ */
 router.get('/api/usuarios/:id', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
@@ -55,7 +71,7 @@ router.get('/api/usuarios/:id', async (req, res) => {
   const {id} = req.params
 
   const lista = await Usuario.findOne({
-    where:{
+    where: {
       cedula: id
     }
   })
@@ -66,23 +82,63 @@ router.get('/api/usuarios/:id', async (req, res) => {
   })
 })
 
-
+/**
+ *
+ */
 router.delete('/api/usuarios/:id', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
 
   const {id} = req.params
 
-  const lista = await Usuario.destroy({
-    where:{
+  const user = await Usuario.findOne({
+    where: {
       cedula: id
     }
   })
+
+  if (!user) {
+    res.status(404).send({
+      message: 'Usuario no existe',
+      data: null
+    })
+  }
+
+  const lista = await Usuario.destroy({
+    where: {
+      cedula: id
+    }
+  })
+
+  emitEvent('userDeleted', user.get('id'))
+
 
   res.send({
     message: 'Usuario eliminado',
     data: lista
   })
 })
+
+
+router.post('/api/event', async (req, res) => {
+
+  // await Usuario.sync({alter: true, force: true})
+  let {event} = req.body
+
+  console.log(event)
+})
+
+
+function emitEvent(type, data) {
+  axios.post(eventUrl,
+    {
+      event: {
+        type,
+        data
+      }
+
+    })
+}
+
 
 module.exports = router
