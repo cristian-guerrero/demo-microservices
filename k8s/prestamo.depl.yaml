@@ -28,7 +28,7 @@ spec:
   ports:
     - name: prestamos
       protocol: TCP
-      port: 3000
+      port: 3002
       targetPort: 3000
 #create secret object
 # kubectl create secret generic jwt-secret --from-literal=JWT_KEY=privatekey

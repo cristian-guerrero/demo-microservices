@@ -20,4 +20,9 @@ spec:
             backend:
               serviceName: libros-clusterip-srv
               servicePort: 3001
+          - path: /api/prestamos/?(.*)
+            pathType: Prefix
+            backend:
+              serviceName: prestamos-clusterip-srv
+              servicePort: 3002
        

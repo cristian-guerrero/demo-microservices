@@ -35,4 +35,12 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
+    - image: guerrerocristian/prestamos
+      context: prestamos
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.js"
+            dest: .
     

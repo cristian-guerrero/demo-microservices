@@ -47,6 +47,7 @@ router.post('/api/usuarios', async (req, res) => {
       data: user
     })
   } catch (err) {
+    console.error(err)
 
     if (err.message === 'Validation error') {
       return res.status(401).send({
@@ -55,7 +56,7 @@ router.post('/api/usuarios', async (req, res) => {
       })
     }
     res.status(500).send({
-      message: 'Ocurrio un error inexperado',
+      message: 'Ocurrio un error inesperado',
 
     })
   }

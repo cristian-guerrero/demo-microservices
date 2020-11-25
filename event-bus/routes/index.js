@@ -5,8 +5,9 @@ const axios = require('axios')
 const router = Router()
 
 const services = [
+  'prestamos-clusterip-srv:3002',
   'libros-clusterip-srv:3001',
-  'usuarios-clusterip-srv:3000'
+  'usuarios-clusterip-srv:3000',
 
 ]
 

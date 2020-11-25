@@ -20,6 +20,10 @@ Usuario.init({
     allowNull: false,
     unique: true
   },
+  prestamos: {
+    type: DataTypes.FLOAT,
+    defaultValue: 0
+  },
 
 }, {
 

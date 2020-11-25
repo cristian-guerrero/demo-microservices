@@ -34,18 +34,19 @@ router.post('/api/libros', async (req, res) => {
   try {
     const {nombre, isbn} = req.body
 
-    const user = await Libro.create({
+    const libro = await Libro.create({
       nombre, isbn
     })
 
 
-    emitEvent('bookCreated',user.get('id') )
+    emitEvent('bookCreated', libro.get('id'))
 
     res.status(201).send({
       message: 'Libro Creado',
-      data: user
+      data: libro
     })
   } catch (err) {
+    console.error(err)
 
     if (err.message === 'Validation error') {
       return res.status(401).send({
@@ -54,7 +55,7 @@ router.post('/api/libros', async (req, res) => {
       })
     }
     res.status(500).send({
-      message: 'Ocurrio un error inexperado',
+      message: 'Ocurrio un error inesperado',
 
     })
   }
@@ -123,6 +124,21 @@ router.post('/api/event', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
   let {event} = req.body
+
+
+  console.log('event ------------->', event.type)
+  if (event.type === 'booking' || event.type === 'bookReturned') {
+    let prestado = event.type === 'booking'
+
+    console.log('------nuevo estado de prestado-->', prestado)
+    await Libro.update({
+      prestado
+    }, {
+      where: {
+        id: event.data.libro
+      }
+    })
+  }
 
   console.log(event)
 })
