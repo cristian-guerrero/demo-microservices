@@ -4,9 +4,7 @@
     <list default="true" id="4d564c8e-a3c7-4b93-b025-f4f6d280bee1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libros/models/libros.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/libros/models/libros.model.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prestamos/models/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/prestamos/models/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuarios/models/usuarios.model.js" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/models/usuarios.model.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s/ingress.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s/ingress.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +52,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606269902520</updated>
-      <workItem from="1606269903729" duration="16422000" />
+      <workItem from="1606269903729" duration="17030000" />
+      <workItem from="1606314956010" duration="1505000" />
     </task>
     <servers />
   </component>

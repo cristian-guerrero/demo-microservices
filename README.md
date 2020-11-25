@@ -5,6 +5,7 @@ Prerequisitos para despliegue en entorno de desarrollo
 
 ##Instalación de docker, docker compose y kubernetes
 la instalación se puede realiza descargando el ejecutable desde este link https://www.docker.com/products/docker-desktop
+en la instalación activar kubernetes, y si ya se tiene instalado desde configuración se puede activar.
 
 ## Instalacion de skaffold 
 Skaffold se utiliza en entorno de desarrollo junto con kubernetes, se puede descargar desde este link https://skaffold.dev/docs/install/
@@ -19,7 +20,7 @@ y la documentación se puede encontrar en https://kubernetes.github.io/ingress-n
 - instalar ingress-nginx con el siguiente comando: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.0/deploy/static/provider/cloud/deploy.yaml 
 - Ejecutar el comando *skaffold dev*
 - En los modelos de cada proyecto descomentar la linea de sync en la parte baja del index de la carpeta de modelos para que se creen las tablas y volverlo a comentar para que no se borren los datos con cada cambio
-- agregar el dominio biblioteca.dev al archivo host que se encuentra en /etc/host 
+- agregar el dominio biblioteca.dev al archivo host que se encuentra en /etc/hosts
 - verificar el funcinamiento con Postman
 - se debe crear al menos un usuario y un libro para poder realizar reservas
 
