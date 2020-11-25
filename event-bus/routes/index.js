@@ -4,10 +4,10 @@ const { Router } = require('express')
 const router = Router()
 
 
-router.get('/api/libros', (req, res) => {
+router.get('/api/event', (req, res) => {
 
 
-  res.send({ message: 'Lista de libros' })
+  res.send({ message: 'Lista de evento' })
 })
 
 
