@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: usuarios-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usuarios-db
+  template:
+    metadata:
+      labels:
+        app: usuarios-db
+    spec:
+      containers:
+        - name: usuarios-db
+          image: postgres:11
+          envFrom:
+            - configMapRef:
+              name: usuarios-db-conf
+---
+apiVersion: v1 
+kind: Service
+metadata:
+  name: usuarios-db-clusterip-srv
+spec:
+  selector:
+    app: usuarios-db
+  type: ClusterIP
+  ports:
+    - name: db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432

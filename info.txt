@@ -5,3 +5,11 @@ reto1) API para una biblioteca
 5) CRUD de usuarios y de libros
 6) cualquier base de datos a libre elección
 7) repositorio de GitHub y con un readme file que indique los pasos que debo hacer para ejecutar la API en mi computadora
+
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.41.0/deploy/static/provider/cloud/deploy.yaml
+
+https://skaffold.dev/
+
+mac = /etc/host

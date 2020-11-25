@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: usuarios-db-conf
+  labels:
+    app: usuarios-db
+data:
+  POSTGRES_DB: usuarios
+  POSTGRES_USER: usuarios
+  POSTGRES_PASSWORD: usuarios
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: libros-db-conf
+  labels:
+    app: libros-db
+data:
+  POSTGRES_DB: libros
+  POSTGRES_USER: libros
+  POSTGRES_PASSWORD: libros

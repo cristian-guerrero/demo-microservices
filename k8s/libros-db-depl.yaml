@@ -15,6 +15,9 @@ spec:
       containers:
         - name: libros-db
           image: postgres:11
+          envFrom:
+            - configMapRef:
+              name: usuarios-db-conf
 ---
 apiVersion: v1 
 kind: Service

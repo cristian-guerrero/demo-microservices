@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: libros-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: libros
+  template:
+    metadata:
+      labels:
+        app: libros
+    spec:
+      containers:
+        - name: libros
+          image: guerrerocristian/libros
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: libros-clusterip-srv
+spec:
+  selector:
+    app: libros
+  type: ClusterIP
+  ports:
+    - name: libros
+      protocol: TCP
+      port: 3001
+      targetPort: 3000
+
