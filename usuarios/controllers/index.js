@@ -1,6 +1,12 @@
 
 const service = require('../services')
 
+/**
+ *
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 const listaUsuarios = async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
@@ -13,11 +19,13 @@ const listaUsuarios = async (req, res) => {
   })
 }
 
-
+/**
+ *
+ * @param req
+ * @param res
+ * @returns {Promise<*>}
+ */
 const crearUsuario = async (req, res) => {
-
-  // await Usuario.sync({alter: true, force: true})
-
 
   try {
     const {nombre, cedula} = req.body
@@ -47,7 +55,12 @@ const crearUsuario = async (req, res) => {
   }
 }
 
-
+/**
+ *
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 const usuarioPorCedula = async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
@@ -62,6 +75,12 @@ const usuarioPorCedula = async (req, res) => {
 }
 
 
+/**
+ *
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 const eliminarUsuario = async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
@@ -88,6 +107,12 @@ const eliminarUsuario = async (req, res) => {
   })
 }
 
+/**
+ *
+ * @param req
+ * @param res
+ * @returns {Promise<void>}
+ */
 const event = async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})

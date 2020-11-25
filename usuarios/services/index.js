@@ -19,7 +19,12 @@ async  function  listaUsuarios() {
 }
 
 
-
+/**
+ *
+ * @param nombre
+ * @param cedula
+ * @returns {Promise<Usuario>}
+ */
 async function  crearUsuario(nombre, cedula) {
  return  await Usuario.create({
     nombre, cedula
@@ -40,6 +45,11 @@ async function  usuarioPorCedula(cedula) {
 
 }
 
+/**
+ *
+ * @param cedula
+ * @returns {Promise<number>}
+ */
 async  function  eliminarUsuario(cedula) {
   return Usuario.destroy({
     where: {
