@@ -1,145 +1,34 @@
 const {Router} = require('express')
 
-const Usuario = require('../models/usuarios.model')
 const router = Router()
 
-const axios = require('axios')
 
-const eventUrl = 'http://event-bus-clusterip-srv:3003/api/event-bus/event'
+const controller = require('../controllers')
+
 
 /**
  *
  */
-router.get('/api/usuarios', async (req, res) => {
-
-  // await Usuario.sync({alter: true, force: true})
-
-  const lista = await Usuario.findAll({
-    attributes: ['id', 'nombre', 'cedula']
-  })
-
-  res.send({
-    message: 'Lista de usuarios',
-    data: lista
-  })
-})
+router.get('/api/usuarios', controller.listaUsuarios)
 
 /**
  * crear usuario
  */
-router.post('/api/usuarios', async (req, res) => {
-
-  // await Usuario.sync({alter: true, force: true})
-
-
-  try {
-    const {nombre, cedula} = req.body
-
-    const user = await Usuario.create({
-      nombre, cedula
-    })
-
-
-    emitEvent('userCreated',user.get('id') )
-
-    res.status(201).send({
-      message: 'Usuario Creado',
-      data: user
-    })
-  } catch (err) {
-    console.error(err)
-
-    if (err.message === 'Validation error') {
-      return res.status(401).send({
-        message: 'Cedula ya registrada',
-
-      })
-    }
-    res.status(500).send({
-      message: 'Ocurrio un error inesperado',
-
-    })
-  }
-})
+router.post('/api/usuarios', controller.crearUsuario)
 
 /**
  *
  */
-router.get('/api/usuarios/:id', async (req, res) => {
-
-  // await Usuario.sync({alter: true, force: true})
-
-  const {id} = req.params
-
-  const lista = await Usuario.findOne({
-    where: {
-      cedula: id
-    }
-  })
-
-  res.send({
-    message: 'Usuario',
-    data: lista
-  })
-})
+router.get('/api/usuarios/:id', controller.usuarioPorCedula)
 
 /**
  *
  */
-router.delete('/api/usuarios/:id', async (req, res) => {
-
-  // await Usuario.sync({alter: true, force: true})
-
-  const {id} = req.params
-
-  const user = await Usuario.findOne({
-    where: {
-      cedula: id
-    }
-  })
-
-  if (!user) {
-    res.status(404).send({
-      message: 'Usuario no existe',
-      data: null
-    })
-  }
-
-  const lista = await Usuario.destroy({
-    where: {
-      cedula: id
-    }
-  })
-
-  emitEvent('userDeleted', user.get('id'))
+router.delete('/api/usuarios/:id', controller.eliminarUsuario)
 
 
-  res.send({
-    message: 'Usuario eliminado',
-    data: lista
-  })
-})
+router.post('/api/event', controller.event)
 
-
-router.post('/api/event', async (req, res) => {
-
-  // await Usuario.sync({alter: true, force: true})
-  let {event} = req.body
-
-  console.log(event)
-})
-
-
-function emitEvent(type, data) {
-  axios.post(eventUrl,
-    {
-      event: {
-        type,
-        data
-      }
-
-    })
-}
 
 
 module.exports = router
