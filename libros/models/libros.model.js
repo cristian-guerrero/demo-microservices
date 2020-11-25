@@ -2,6 +2,7 @@ const {Model, DataTypes} = require("sequelize")
 const sqz = require('../db');
 
 
+
 class Libro extends Model {
 }
 
@@ -33,8 +34,10 @@ Libro.init({
   modelName: 'Libro',
   tableName: 'libro',
   timestamps: true,
-  paranoid: true,
+  // paranoid: true,
 
 });
+
+// Libro.sync({alter: true, force: true})
 
 module.exports = Libro

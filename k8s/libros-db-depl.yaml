@@ -17,7 +17,7 @@ spec:
           image: postgres:11
           envFrom:
             - configMapRef:
-                name: usuarios-db-conf
+                name: libros-db-conf
 ---
 apiVersion: v1 
 kind: Service

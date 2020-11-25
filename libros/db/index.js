@@ -17,7 +17,7 @@ const dbConfig = {
   }
 }
 
-exports.sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
+const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   port: dbConfig.port || 5432,
@@ -29,3 +29,5 @@ exports.sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD,
       idle: dbConfig.pool.idle
   }
 });
+
+module .exports = sequelize

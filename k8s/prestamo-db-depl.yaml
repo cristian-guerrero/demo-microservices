@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prestamos-db-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prestamos-db
+  template:
+    metadata:
+      labels:
+        app: prestamos-db
+    spec:
+      containers:
+        - name: prestamos-db
+          image: postgres:11
+          envFrom:
+            - configMapRef:
+                name: prestamos-db-conf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prestamos-db-clusterip-srv
+spec:
+  selector:
+    app: prestamos-db
+  type: ClusterIP
+  ports:
+    - name: db
+      protocol: TCP
+      port: 5432
+      targetPort: 5432

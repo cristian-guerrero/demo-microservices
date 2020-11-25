@@ -11,12 +11,10 @@ const eventUrl = 'http://event-bus-clusterip-srv:3003/api/event-bus/event'
 /**
  *
  */
-router.get('/api/Libros', async (req, res) => {
-
-  await Libro.sync({alter: true, force: true})
+router.get('/api/libros', async (req, res) => {
 
   const lista = await Libro.findAll({
-    attributes: ['id', 'nombre', 'isbn']
+    attributes: ['id', 'nombre', 'isbn', 'prestado']
   })
 
   res.send({
@@ -28,30 +26,30 @@ router.get('/api/Libros', async (req, res) => {
 /**
  * crear usuario
  */
-router.post('/api/Libros', async (req, res) => {
+router.post('/api/libros', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
 
 
   try {
-    const {nombre, cedula} = req.body
+    const {nombre, isbn} = req.body
 
-    const user = await Usuario.create({
-      nombre, cedula
+    const user = await Libro.create({
+      nombre, isbn
     })
 
 
-    emitEvent('userCreated',user.get('id') )
+    emitEvent('bookCreated',user.get('id') )
 
     res.status(201).send({
-      message: 'Usuario Creado',
+      message: 'Libro Creado',
       data: user
     })
   } catch (err) {
 
     if (err.message === 'Validation error') {
       return res.status(401).send({
-        message: 'Cedula ya registrada',
+        message: 'Isbn ya registrada',
 
       })
     }
@@ -65,20 +63,20 @@ router.post('/api/Libros', async (req, res) => {
 /**
  *
  */
-router.get('/api/Libros/:id', async (req, res) => {
+router.get('/api/libros/:id', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
 
   const {id} = req.params
 
-  const lista = await Libros.findOne({
+  const lista = await Libro.findOne({
     where: {
-      cedula: id
+      isbn: id
     }
   })
 
   res.send({
-    message: 'Usuario',
+    message: 'Libro',
     data: lista
   })
 })
@@ -86,36 +84,36 @@ router.get('/api/Libros/:id', async (req, res) => {
 /**
  *
  */
-router.delete('/api/usuarios/:id', async (req, res) => {
+router.delete('/api/libros/:id', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
 
   const {id} = req.params
 
-  const user = await Libros.findOne({
+  const user = await Libro.findOne({
     where: {
-      cedula: id
+      isbn: id
     }
   })
 
   if (!user) {
     res.status(404).send({
-      message: 'Usuario no existe',
+      message: 'Libro no existe',
       data: null
     })
   }
 
-  const lista = await Libros.destroy({
+  const lista = await Libro.destroy({
     where: {
-      cedula: id
+      isbn: id
     }
   })
 
-  emitEvent('userDeleted', user.get('id'))
+  emitEvent('bookDeleted', user.get('id'))
 
 
   res.send({
-    message: 'Usuario eliminado',
+    message: 'Libro eliminado',
     data: lista
   })
 })

@@ -19,3 +19,14 @@ data:
   POSTGRES_DB: libros
   POSTGRES_USER: libros
   POSTGRES_PASSWORD: libros
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prestamos-db-conf
+  labels:
+    app: prestamos-db
+data:
+  POSTGRES_DB: prestamos
+  POSTGRES_USER: prestamos
+  POSTGRES_PASSWORD: prestamos

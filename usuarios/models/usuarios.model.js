@@ -27,8 +27,12 @@ Usuario.init({
   modelName: 'Usuario',
   tableName: 'usuario',
   timestamps: true,
-  paranoid: true,
+  // paranoid: true,
 
 });
+
+// Usuario.sync({alter: true, force: true})
+
+
 
 module.exports = Usuario
