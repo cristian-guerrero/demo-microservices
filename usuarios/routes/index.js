@@ -28,6 +28,12 @@ router.delete('/api/usuarios/:id', controller.eliminarUsuario)
 /**
  *
  */
+router.put('/api/usuarios/:id', controller.actualizarUsuario)
+
+
+/**
+ *
+ */
 router.post('/api/event', controller.event)
 
 

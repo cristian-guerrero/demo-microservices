@@ -119,25 +119,94 @@ router.delete('/api/libros/:id', async (req, res) => {
   })
 })
 
+/**
+ *
+ */
+router.put('/api/libros/:id', async (req, res) => {
 
+  // await Usuario.sync({alter: true, force: true})
+
+
+  try {
+    const {nombre, isbn} = req.body
+    const {id} = req.params
+
+    let newData = {
+      ...nombre && {nombre}
+    }
+
+
+    if (isbn && isbn !== id) {
+      const libroExiste = await Libro.findOne({
+        where: {
+          isbn
+        }
+      })
+
+      if (libroExiste) {
+        return res.status(401).send({
+          message: 'ISBN ya registrada',
+
+        })
+      }
+      newData.isbn = isbn
+
+    }
+
+    console.log('new data -----------------', newData)
+
+    const libro = await Libro.update({
+      ...newData
+    }, {
+      where: {
+        isbn: id
+      }
+    })
+
+
+    res.status(201).send({
+      message: 'Libro Actualizado',
+      data: libro
+    })
+  } catch (err) {
+    console.error(err)
+
+    if (err.message === 'Validation error') {
+      return res.status(401).send({
+        message: 'Isbn ya registrada',
+
+      })
+    }
+    res.status(500).send({
+      message: 'Ocurrio un error inesperado',
+
+    })
+  }
+})
+
+/**
+ *
+ */
 router.post('/api/event', async (req, res) => {
 
   // await Usuario.sync({alter: true, force: true})
   let {event} = req.body
 
 
-  console.log('event ------------->', event.type)
+  // console.log('event ------------->', event.type)
   if (event.type === 'booking' || event.type === 'bookReturned') {
     let prestado = event.type === 'booking'
 
     console.log('------nuevo estado de prestado-->', prestado)
-    await Libro.update({
-      prestado
-    }, {
-      where: {
-        id: event.data.libro
-      }
-    })
+    if (event.data.libro) {
+      await Libro.update({
+        prestado
+      }, {
+        where: {
+          id: event.data.libro
+        }
+      })
+    }
   }
 
   console.log(event)

@@ -105,7 +105,12 @@ router.post('/api/prestamos/devolucion/:id', async (req, res) => {
       })
     }
 
-
+    if(prestamo.get('entregado')) {
+      return  res.status(200).send({
+        message: 'El libro ya se encuentra entregado',
+        data: null
+      })
+    }
 
     const book = await Libro.findByPk(prestamo.get('libro'))
 
@@ -132,7 +137,10 @@ router.post('/api/prestamos/devolucion/:id', async (req, res) => {
 
 
 
-    emitEvent('bookReturned',book ? prestamo.get('libro'): null)
+    emitEvent('bookReturned',{
+      libro: prestamo.get('libro'),
+      usuario: prestamo.get('libro')
+    })
 
     res.status(200).send({
       message: 'Libro devuelto con exito',

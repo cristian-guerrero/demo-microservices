@@ -11,14 +11,14 @@ Usuario.hasMany(Prestamo, {as: 'prestamos', foreignKey: {name: 'usuario', allowN
 Prestamo.belongsTo(Usuario, {as: 'usuarios', foreignKey: {name: 'usuario', allowNull: true}})
 
 
-function sync() {
+async function sync() {
 
-   Libro.sync({alter: true, force: true})
-  Prestamo.sync({alter: true, force: true})
-   Usuario.sync({alter: true, force: true})
+  await Libro.sync({alter: true, force: true})
+  await Usuario.sync({alter: true, force: true})
+  await Prestamo.sync({alter: true, force: true})
 }//
 
-// sync()
+// sync().then()
 
 module.exports = {
   Libro, Prestamo, Usuario

@@ -1,4 +1,3 @@
-
 const service = require('../services')
 
 /**
@@ -33,7 +32,7 @@ const crearUsuario = async (req, res) => {
     const user = await service.crearUsuario(nombre, cedula)
 
 
-    service.emitEvent('userCreated',user.get('id') )
+    service.emitEvent('userCreated', user.get('id'))
 
     res.status(201).send({
       message: 'Usuario Creado',
@@ -107,6 +106,54 @@ const eliminarUsuario = async (req, res) => {
   })
 }
 
+const actualizarUsuario = async (req, res) => {
+
+  try {
+    const {nombre, cedula} = req.body
+    const {id} = req.params
+
+    let newData = {
+      ...nombre && {nombre}
+    }
+
+    if (cedula && cedula !== id) {
+
+      const usuarioExiste = await service.usuarioPorCedula(cedula)
+      if (usuarioExiste) {
+        return res.status(401).send({
+          message: 'Cedula ya registrada',
+
+        })
+      }
+      newData.cedula = cedula
+
+    }
+
+    // console.log('new data -----------------', newData)
+
+    const user = await service.actualizarUsuario(newData, id)
+
+
+    res.status(201).send({
+      message: 'Usuario actualizado',
+      data: user
+    })
+  } catch (err) {
+    console.error(err)
+
+    if (err.message === 'Validation error') {
+      return res.status(401).send({
+        message: 'Cedula ya registrada',
+
+      })
+    }
+    res.status(500).send({
+      message: 'Ocurrio un error inesperado',
+
+    })
+  }
+}
+
 /**
  *
  * @param req
@@ -126,7 +173,8 @@ module.exports = {
   crearUsuario,
   usuarioPorCedula,
   eliminarUsuario,
-  event
+  event,
+  actualizarUsuario
 
 }
 

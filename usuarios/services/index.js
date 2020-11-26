@@ -58,6 +58,17 @@ async  function  eliminarUsuario(cedula) {
   })
 }
 
+
+async function  actualizarUsuario(data, cedula) {
+  return  await Usuario.update({
+    ...data
+  }, {
+    where: {
+      cedula
+    }
+  })
+}
+
 /**
  *
  * @param type
@@ -79,6 +90,6 @@ module.exports = {
 
   listaUsuarios, crearUsuario,
   emitEvent,usuarioPorCedula,
-  eliminarUsuario
+  eliminarUsuario, actualizarUsuario
 
 }
